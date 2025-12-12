@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Next Page</title>
+</head>
+<body>
+    <h1>You are now on the next page!</h1>
+    <button onclick="window.location.href='index.html'">
+        Back
+    </button>
+</body>
+</html>

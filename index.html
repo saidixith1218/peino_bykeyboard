@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home Page</title>
+    <title>Piano Start Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .start-button {
+            padding: 15px 30px;
+            font-size: 22px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            background-color: #4CAF50;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .start-button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome!</h1>
-    <button onclick="window.location.href='pienoopen'">
-        Go to Next Page
+
+    <button class="start-button" onclick="window.location.href='nextpage.html'">
+        Start to play piano
     </button>
+
 </body>
 </html>
-

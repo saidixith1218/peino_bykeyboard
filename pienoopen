@@ -1,9 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Piano Page</title>
-</head>
-<body>
-    <h1>You are now on the piano page!</h1>
-</body>
-</html>
+#include <emscripten.h>
+
+EMSCRIPTEN_KEEPALIVE
+int getFrequency(int key) {
+    switch (key) {
+        case 65: return 261; // A → C
+        case 83: return 293; // S → D
+        case 68: return 329; // D → E
+        case 70: return 349; // F → F
+        case 71: return 392; // G → G
+        case 72: return 440; // H → A
+        case 74: return 493; // J → B
+        default: return 0;
+    }
+}

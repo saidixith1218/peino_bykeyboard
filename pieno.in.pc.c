@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>  // For usleep (Linux/Mac)
+#include <termios.h> // For getch-like input
+#include <fcntl.h>
+
+// Function to play a beep at a given frequency (Hz) for a duration (ms)
+void play_note(int frequency, int duration_ms) {
+    if (frequency > 0) {
+        char command[100];
+        sprintf(command, "beep -f %d -l %d", frequency, duration_ms);
+        system(command);  // Uses beep utility; replace with your sound library
+    }
+}
+
+// Frequencies for 15 piano keys (C4 to C5 scale, approximate)
+int frequencies[15] = {
+    261, 277, 293, 311, 329, 349, 370, 392, 415, 440, 466, 494, 523, 554, 587  // C4 to B4, then C5
+};
+char keys[15] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'};
+
+// Simple getch for non-blocking input
+int getch() {
+    struct termios oldt, newt;
+    int ch;
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    ch = getchar();
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    return ch;
+}
+
+int main() {
+    printf("15-Key Piano Simulator\n");
+    printf("Keys: A-O (C4 to C5)\n");
+    printf("Press a key to play a note, 'q' to quit.\n\n");
+
+    // Display the keyboard
+    printf("Piano Keys: ");
+    for (int i = 0; i < 15; i++) {
+        printf("[%c] ", keys[i]);
+    }
+    printf("\n");
+
+    while (1) {
+        int ch = getch();
+        if (ch == 'q' || ch == 'Q') break;
+
+        // Find the key and play the note (case-insensitive)
+        for (int i = 0; i < 15; i++) {
+            if (ch == keys[i] || (ch >= 'a' && ch <= 'o' && ch - 'a' + 'A' == keys[i])) {
+                printf("Playing note

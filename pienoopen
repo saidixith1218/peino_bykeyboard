@@ -1,15 +1,13 @@
-#include <emscripten.h>
-
-EMSCRIPTEN_KEEPALIVE
-int getFrequency(int key) {
-    switch (key) {
-        case 65: return 261; // A → C
-        case 83: return 293; // S → D
-        case 68: return 329; // D → E
-        case 70: return 349; // F → F
-        case 71: return 392; // G → G
-        case 72: return 440; // H → A
-        case 74: return 493; // J → B
-        default: return 0;
-    }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Page</title>
+</head>
+<body>
+    <h1>Choose an Option</h1>
+    <button onclick="alert('You selected mobile or tab')">mobile or tab</button>
+    <button onclick="alert('You selected pc')">pc</button>
+</body>
+</html>

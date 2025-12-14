@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Next Page</title>
+    <title>Select Device</title>
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            flex-direction: column;
         }
         button {
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 18px;
+            margin: 10px;
             cursor: pointer;
-            margin: 5px;
         }
     </style>
 </head>
 <body>
-    <button onclick="alert('You selected Mobile or Tab')">Mobile or Tab</button>
-    <button onclick="alert('You selected PC')">PC</button>
+    <a href="mobile.html"><button>Mobile or Tab</button></a>
+    <a href="pc.html"><button>PC</button></a>
 </body>
 </html>

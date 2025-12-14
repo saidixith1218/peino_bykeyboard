@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Next Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Choose an Option</h1>
-    <button onclick="alert('You selected mobile or tab')">mobile or tab</button>
-    <button onclick="alert('You selected pc')">pc</button>
+    <button onclick="alert('You selected Mobile or Tab')">Mobile or Tab</button>
+    <button onclick="alert('You selected PC')">PC</button>
 </body>
 </html>

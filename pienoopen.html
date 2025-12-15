@@ -6,14 +6,14 @@
         body {
             margin: 0;
             height: 100vh;
-            background-color: #0b1c3d; /* navy blue */
+            background-color: #0b1c3d;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: Arial, sans-serif;
         }
 
-        .container {
+        .box {
             text-align: center;
         }
 
@@ -23,7 +23,7 @@
             font-size: 22px;
             margin: 15px 0;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             background-color: gold;
             color: #0b1c3d;
@@ -32,15 +32,24 @@
         button:hover {
             background-color: #ffd700;
         }
+
+        .piano {
+            font-size: 100px;
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="box">
+    <div class="piano">🎹</div>
+
     <button onclick="location.href='pieno.in.mobile.or.tab.html'">
         Mobile or Tab
     </button>
+
     <br>
+
     <button onclick="location.href='pieno.in.pc.c'">
         PC
     </button>
@@ -48,3 +57,4 @@
 
 </body>
 </html>
+

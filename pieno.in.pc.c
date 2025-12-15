@@ -3,201 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piano Keyboard Simulator</title>
+    <title>Virtual Piano</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-color: navy;
-            position: relative;
-            overflow: hidden;
+            background-color: #000080; /* Navy blue */
             font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
         }
-        
-        /* Create small gold stars using CSS */
-        body::before {
-            content: '';
+        /* Starry background */
+        .star {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(circle, gold 1px, transparent 1px);
-            background-size: 50px 50px; /* Adjust size for star density */
-            opacity: 0.5;
-            pointer-events: none;
+            background-color: gold;
+            border-radius: 50%;
+            opacity: 0.8;
         }
-        
-        .piano {
+        .star:nth-child(odd) {
+            width: 2px;
+            height: 2px;
+        }
+        .star:nth-child(even) {
+            width: 1px;
+            height: 1px;
+        }
+        #piano {
             display: flex;
             justify-content: center;
             align-items: flex-end;
             height: 100vh;
             position: relative;
         }
-        
+        .key {
+            position: relative;
+            border: 1px solid #000;
+            box-sizing: border-box;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            font-size: 12px;
+            color: #000;
+            transition: background-color 0.1s;
+        }
         .white-key {
             width: 40px;
             height: 150px;
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 0 0 5px 5px;
-            margin: 0 1px;
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            font-size: 12px;
-            color: #333;
-            padding-bottom: 10px;
-        }
-        
-        .black-key {
-            width: 25px;
-            height: 90px;
-            background-color: black;
-            border: 1px solid #333;
-            border-radius: 0 0 3px 3px;
-            position: absolute;
-            cursor: pointer;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            font-size: 10px;
-            color: white;
-            padding-bottom: 5px;
+            background-color: #fff;
+            margin: 0 -1px;
             z-index: 1;
         }
-        
-        /* Position black keys */
-        .black-key:nth-child(2) { left: 30px; }
-        .black-key:nth-child(3) { left: 70px; }
-        .black-key:nth-child(5) { left: 150px; }
-        .black-key:nth-child(6) { left: 190px; }
-        .black-key:nth-child(7) { left: 230px; }
-        .black-key:nth-child(9) { left: 310px; }
-        .black-key:nth-child(10) { left: 350px; }
-        .black-key:nth-child(12) { left: 430px; }
-        .black-key:nth-child(13) { left: 470px; }
-        .black-key:nth-child(14) { left: 510px; }
-        
-        .key.active {
+        .white-key:hover, .white-key.active {
             background-color: #ddd;
         }
-        
-        .black-key.active {
-            background-color: #555;
-        }
-        
-        .instructions {
+        .black-key {
+            width: 24px;
+            height: 90px;
+            background-color: #000;
             position: absolute;
-            top: 20px;
-            left: 20px;
-            color: white;
-            font-size: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: #fff;
+        }
+        .black-key:hover, .black-key.active {
+            background-color: #333;
+        }
+        .note-label {
+            position: absolute;
+            bottom: 5px;
+            font-size: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="instructions">
-        <p>Use your computer keyboard to play the piano. Keys are mapped as follows:</p>
-        <p>White keys (naturals): A S D F G H J K L ; ' (for C3 to C5)</p>
-        <p>Black keys (sharps/flats): W E T Y U O P [ ] (for C#3, D#3, etc.)</p>
-    </div>
-    <div class="piano">
-        <!-- White keys: C3 to C5 (15 keys) -->
-        <div class="white-key" data-note="C3" data-key="a">C3</div>
-        <div class="white-key" data-note="D3" data-key="s">D3</div>
-        <div class="white-key" data-note="E3" data-key="d">E3</div>
-        <div class="white-key" data-note="F3" data-key="f">F3</div>
-        <div class="white-key" data-note="G3" data-key="g">G3</div>
-        <div class="white-key" data-note="A3" data-key="h">A3</div>
-        <div class="white-key" data-note="B3" data-key="j">B3</div>
-        <div class="white-key" data-note="C4" data-key="k">C4</div>
-        <div class="white-key" data-note="D4" data-key="l">D4</div>
-        <div class="white-key" data-note="E4" data-key=";">E4</div>
-        <div class="white-key" data-note="F4" data-key="'">F4</div>
-        <div class="white-key" data-note="G4" data-key="z">G4</div>
-        <div class="white-key" data-note="A4" data-key="x">A4</div>
-        <div class="white-key" data-note="B4" data-key="c">B4</div>
-        <div class="white-key" data-note="C5" data-key="v">C5</div>
-        
-        <!-- Black keys: Sharps/Flats -->
-        <div class="black-key" data-note="C#3" data-key="w">C#3</div>
-        <div class="black-key" data-note="D#3" data-key="e">D#3</div>
-        <div class="black-key" data-note="F#3" data-key="t">F#3</div>
-        <div class="black-key" data-note="G#3" data-key="y">G#3</div>
-        <div class="black-key" data-note="A#3" data-key="u">A#3</div>
-        <div class="black-key" data-note="C#4" data-key="o">C#4</div>
-        <div class="black-key" data-note="D#4" data-key="p">D#4</div>
-        <div class="black-key" data-note="F#4" data-key="[">F#4</div>
-        <div class="black-key" data-note="G#4" data-key="]">G#4</div>
-        <div class="black-key" data-note="A#4" data-key="\\">A#4</div>
+    <!-- Generate stars dynamically -->
+    <script>
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(star);
+        }
+    </script>
+
+    <div id="piano">
+        <!-- Octave 1 -->
+        <div class="key white-key" data-note="C4" data-key="a">
+            <div class="note-label">C</div>
+        </div>
+        <div class="key black-key" data-note="C#4" data-key="w">
+            <div class="note-label">C#<br>Db</div>
+        </div>
+        <div class="key white-key" data-note="D4" data-key="s">
+            <div class="note-label">D</div>
+        </div>
+        <div class="key black-key" data-note="D#4" data-key="e">
+            <div class="note-label">D#<br>Eb</div>
+        </div>
+        <div class="key white-key" data-note="E4" data-key="d">
+            <div class="note-label">E</div>
+        </div>
+        <div class="key white-key" data-note="F4" data-key="f">
+            <div class="note-label">F</div>
+        </div>
+        <div class="key black-key" data-note="F#4" data-key="t">
+            <div class="note-label">F#<br>Gb</div>
+        </div>
+        <div class="key white-key" data-note="G4" data-key="g">
+            <div class="note-label">G</div>
+        </div>
+        <div class="key black-key" data-note="G#4" data-key="y">
+            <div class="note-label">G#<br>Ab</div>
+        </div>
+        <div class="key white-key" data-note="A4" data-key="h">
+            <div class="note-label">A</div>
+        </div>
+        <div class="key black-key" data-note="A#4" data-key="u">
+            <div class="note-label">A#<br>Bb</div>
+        </div>
+        <div class="key white-key" data-note="B4" data-key="j">
+            <div class="note-label">B</div>
+        </div>
+        <!-- Octave 2 -->
+        <div class="key white-key" data-note="C5" data-key="k">
+            <div class="note-label">C</div>
+        </div>
+        <div class="key black-key" data-note="C#5" data-key="o">
+            <div class="note-label">C#<br>Db</div>
+        </div>
+        <div class="key white-key" data-note="D5" data-key="l">
+            <div class="note-label">D</div>
+        </div>
+        <div class="key black-key" data-note="D#5" data-key="p">
+            <div class="note-label">D#<br>Eb</div>
+        </div>
+        <div class="key white-key" data-note="E5" data-key=";">
+            <div class="note-label">E</div>
+        </div>
     </div>
 
     <script>
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const keys = document.querySelectorAll('.white-key, .black-key');
+        const keys = document.querySelectorAll('.key');
         const keyMap = {};
 
-        // Map computer keys to piano notes
+        // Note frequencies (A4 = 440Hz)
+        const noteFrequencies = {
+            'C4': 261.63, 'C#4': 277.18, 'D4': 293.66, 'D#4': 311.13, 'E4': 329.63,
+            'F4': 349.23, 'F#4': 369.99, 'G4': 392.00, 'G#4': 415.30, 'A4': 440.00,
+            'A#4': 466.16, 'B4': 493.88, 'C5': 523.25, 'C#5': 554.37, 'D5': 587.33,
+            'D#5': 622.25, 'E5': 659.25
+        };
+
+        // Build key map
         keys.forEach(key => {
             const note = key.dataset.note;
-            const computerKey = key.dataset.key;
-            keyMap[computerKey] = { element: key, note: note };
+            const keyboardKey = key.dataset.key;
+            keyMap[keyboardKey] = { element: key, note: note };
         });
 
-        // Function to play a note
+        // Play note function
         function playNote(note) {
-            const frequencies = {
-                'C3': 130.81, 'C#3': 138.59, 'D3': 146.83, 'D#3': 155.56, 'E3': 164.81,
-                'F3': 174.61, 'F#3': 185.00, 'G3': 196.00, 'G#3': 207.65, 'A3': 220.00,
-                'A#3': 233.08, 'B3': 246.94, 'C4': 261.63, 'C#4': 277.18, 'D4': 293.66,
-                'D#4': 311.13, 'E4': 329.63, 'F4': 349.23, 'F#4': 369.99, 'G4': 392.00,
-                'G#4': 415.30, 'A4': 440.00, 'A#4': 466.16, 'B4': 493.88, 'C5': 523.25
-            };
-            
+            const frequency = noteFrequencies[note];
+            if (!frequency) return;
+
             const oscillator = audioContext.createOscillator();
             const gainNode = audioContext.createGain();
-            
+
             oscillator.connect(gainNode);
             gainNode.connect(audioContext.destination);
-            
-            oscillator.frequency.setValueAtTime(frequencies[note], audioContext.currentTime);
-            oscillator.type = 'sawtooth'; // Piano-like sound
-            
+
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+            oscillator.type = 'sine';
+
             gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
-            
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
             oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + 1);
+            oscillator.stop(audioContext.currentTime + 0.5);
         }
 
-        // Handle keyboard events
-        document.addEventListener('keydown', (event) => {
-            const key = event.key.toLowerCase();
-            if (keyMap[key]) {
-                const { element, note } = keyMap[key];
-                element.classList.add('active');
-                playNote(note);
+        // Keyboard event listeners
+        document.addEventListener('keydown', (e) => {
+            const key = e.key.toLowerCase();
+            if (keyMap[key] && !keyMap[key].element.classList.contains('active')) {
+                keyMap[key].element.classList.add('active');
+                playNote(keyMap[key].note);
             }
         });
 
-        document.addEventListener('keyup', (event) => {
-            const key = event.key.toLowerCase();
+        document.addEventListener('keyup', (e) => {
+            const key = e.key.toLowerCase();
             if (keyMap[key]) {
-                const { element } = keyMap[key];
-                element.classList.remove('active');
+                keyMap[key].element.classList.remove('active');
             }
         });
 
-        // Handle mouse clicks
+        // Mouse click support
         keys.forEach(key => {
             key.addEventListener('mousedown', () => {
-                const note = key.dataset.note;
                 key.classList.add('active');
-                playNote(note);
+                playNote(key.dataset.note);
             });
             key.addEventListener('mouseup', () => {
                 key.classList.remove('active');

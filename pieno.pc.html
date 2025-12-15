@@ -145,30 +145,30 @@
         const key = event.key.toLowerCase();
         let freq;
         switch(key) {
-            case 'a': freq = 261.63; break; // C4
-            case 's': freq = 277.18; break; // C#4
-            case 'd': freq = 293.66; break; // D4
-            case 'f': freq = 311.13; break; // D#4
-            case 'g': freq = 329.63; break; // E4
-            case 'h': freq = 349.23; break; // F4
-            case 'j': freq = 369.99; break; // F#4
-            case 'k': freq = 392.00; break; // G4
-            case 'l': freq = 415.30; break; // G#4
-            case 'z': freq = 440.00; break; // A4
-            case 'x': freq = 466.16; break; // A#4
-            case 'c': freq = 493.88; break; // B4
-            case 'v': freq = 523.25; break; // C5
-            case 'b': freq = 554.37; break; // C#5
-            case 'n': freq = 587.33; break; // D5
-            case 'm': freq = 622.25; break; // D#5
-            case 'q': freq = 659.25; break; // E5
-            case "w": freq = 698.46; break; // F5
-            case 'e': freq = 739.99; break; // F#5
-            case 'r': freq = 783.99; break; // G5
-            case 't': freq = 830.61; break; // G#5
-            case 'y': freq = 880.00; break; // A5
-            case 'u': freq = 932.33; break; // A#5
-            case 'i': freq = 987.77; break; // B5
+            case 'q': freq = 261.63; break; // C4
+            case '2': freq = 277.18; break; // C#4
+            case 'w': freq = 293.66; break; // D4
+            case '3': freq = 311.13; break; // D#4
+            case 'e': freq = 329.63; break; // E4
+            case 'r': freq = 349.23; break; // F4
+            case '5': freq = 369.99; break; // F#4
+            case 't': freq = 392.00; break; // G4
+            case '6': freq = 415.30; break; // G#4
+            case 'y': freq = 440.00; break; // A4
+            case '7': freq = 466.16; break; // A#4
+            case 'u': freq = 493.88; break; // B4
+            case 'i': freq = 523.25; break; // C5
+            case '9': freq = 554.37; break; // C#5
+            case 'o': freq = 587.33; break; // D5
+            case '0': freq = 622.25; break; // D#5
+            case 'p': freq = 659.25; break; // E5
+            case "[": freq = 698.46; break; // F5
+            case 'a': freq = 739.99; break; // F#5
+            case 'z': freq = 783.99; break; // G5
+            case 's': freq = 830.61; break; // G#5
+            case 'x': freq = 880.00; break; // A5
+            case 'd': freq = 932.33; break; // A#5
+            case 'c': freq = 987.77; break; // B5
             default: return;
         }
         playNote(freq);

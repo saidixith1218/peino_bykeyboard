@@ -49,6 +49,17 @@
         background: #ddd;
     }
 
+    .white-key::after {
+        content: attr(data-key);
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 14px;
+        color: black;
+        font-weight: bold;
+    }
+
     .black-key {
         width: 30px;
         height: 140px;
@@ -63,48 +74,59 @@
     .black-key:active {
         background: #444;
     }
+
+    .black-key::after {
+        content: attr(data-key);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: white;
+        font-weight: bold;
+    }
 </style>
 </head>
 <body>
 
 <div class="piano">
     <!-- White keys with black keys -->
-    <div class="white-key" data-note="261.63">
-        <div class="black-key" data-note="277.18"></div>
+    <div class="white-key" data-note="261.63" data-key="q">
+        <div class="black-key" data-note="277.18" data-key="2"></div>
     </div>
-    <div class="white-key" data-note="293.66">
-        <div class="black-key" data-note="311.13"></div>
+    <div class="white-key" data-note="293.66" data-key="w">
+        <div class="black-key" data-note="311.13" data-key="3"></div>
     </div>
-    <div class="white-key" data-note="329.63"></div>
-    <div class="white-key" data-note="349.23">
-        <div class="black-key" data-note="369.99"></div>
+    <div class="white-key" data-note="329.63" data-key="e"></div>
+    <div class="white-key" data-note="349.23" data-key="r">
+        <div class="black-key" data-note="369.99" data-key="5"></div>
     </div>
-    <div class="white-key" data-note="392.00">
-        <div class="black-key" data-note="415.30"></div>
+    <div class="white-key" data-note="392.00" data-key="t">
+        <div class="black-key" data-note="415.30" data-key="6"></div>
     </div>
-    <div class="white-key" data-note="440.00">
-        <div class="black-key" data-note="466.16"></div>
+    <div class="white-key" data-note="440.00" data-key="y">
+        <div class="black-key" data-note="466.16" data-key="7"></div>
     </div>
-    <div class="white-key" data-note="493.88"></div>
+    <div class="white-key" data-note="493.88" data-key="u"></div>
 
     <!-- Second octave -->
-    <div class="white-key" data-note="523.25">
-        <div class="black-key" data-note="554.37"></div>
+    <div class="white-key" data-note="523.25" data-key="i">
+        <div class="black-key" data-note="554.37" data-key="9"></div>
     </div>
-    <div class="white-key" data-note="587.33">
-        <div class="black-key" data-note="622.25"></div>
+    <div class="white-key" data-note="587.33" data-key="o">
+        <div class="black-key" data-note="622.25" data-key="0"></div>
     </div>
-    <div class="white-key" data-note="659.25"></div>
-    <div class="white-key" data-note="698.46">
-        <div class="black-key" data-note="739.99"></div>
+    <div class="white-key" data-note="659.25" data-key="p"></div>
+    <div class="white-key" data-note="698.46" data-key="[">
+        <div class="black-key" data-note="739.99" data-key="a"></div>
     </div>
-    <div class="white-key" data-note="783.99">
-        <div class="black-key" data-note="830.61"></div>
+    <div class="white-key" data-note="783.99" data-key="z">
+        <div class="black-key" data-note="830.61" data-key="s"></div>
     </div>
-    <div class="white-key" data-note="880.00">
-        <div class="black-key" data-note="932.33"></div>
+    <div class="white-key" data-note="880.00" data-key="x">
+        <div class="black-key" data-note="932.33" data-key="d"></div>
     </div>
-    <div class="white-key" data-note="987.77"></div>
+    <div class="white-key" data-note="987.77" data-key="c"></div>
 </div>
 
 <script>

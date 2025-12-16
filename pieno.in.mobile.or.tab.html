@@ -141,5 +141,62 @@
     });
 </script>
 
+<!-- Included C Program for Console-Based Piano Simulation -->
+<!-- This C program provides a console-based equivalent to play piano notes using keyboard input. It uses the Windows Beep function to produce sounds. Compile with a Windows compiler like MinGW or Visual Studio. -->
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;windows.h&gt;  // For Beep function (Windows-specific)
+#include &lt;conio.h&gt;    // For _getch()
+
+int main() {
+    printf("Console Piano: Press keys to play notes. Press 'q' to quit.\n");
+    printf("Keys: q,w,e,r,t,y,u,i,o,p,[,z,x,c for white keys; 2,3,5,6,7,9,0,a,s,d for black keys.\n");
+
+    while (1) {
+        char key = _getch();
+        int freq = 0;
+        int duration = 500;  // 500 ms
+
+        switch (key) {
+            case 'q': freq = 262; break;  // C4 (approximated)
+            case '2': freq = 277; break;  // C#4
+            case 'w': freq = 294; break;  // D4
+            case '3': freq = 311; break;  // D#4
+            case 'e': freq = 330; break;  // E4
+            case 'r': freq = 349; break;  // F4
+            case '5': freq = 370; break;  // F#4
+            case 't': freq = 392; break;  // G4
+            case '6': freq = 415; break;  // G#4
+            case 'y': freq = 440; break;  // A4
+            case '7': freq = 466; break;  // A#4
+            case 'u': freq = 494; break;  // B4
+            case 'i': freq = 523; break;  // C5
+            case '9': freq = 554; break;  // C#5
+            case 'o': freq = 587; break;  // D5
+            case '0': freq = 622; break;  // D#5
+            case 'p': freq = 659; break;  // E5
+            case '[': freq = 698; break;  // F5
+            case 'a': freq = 740; break;  // F#5
+            case 'z': freq = 784; break;  // G5
+            case 's': freq = 831; break;  // G#5
+            case 'x': freq = 880; break;  // A5
+            case 'd': freq = 932; break;  // A#5
+            case 'c': freq = 988; break;  // B5
+            case 'Q':  // Quit on 'Q'
+                return 0;
+            default:
+                continue;
+        }
+
+        if (freq > 0) {
+            Beep(freq, duration);
+        }
+    }
+
+    return 0;
+}
+</pre>
+
 </body>
 </html>
+
